@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class MarkovClassifier {
-    private Map<Character, List<Character>> transitionProbabilities;
+    private final Map<Character, List<Character>> transitionProbabilities;
 
     public MarkovClassifier() {
         this.transitionProbabilities = new HashMap<>();
@@ -13,8 +13,8 @@ public class MarkovClassifier {
 
     public void train(List<MessageData> trainingData) {
         for (MessageData data : trainingData) {
-            char phase = data.getPhase();
-            List<Character> messwerten = data.getMesswerten();
+            char phase = data.getPhase(); // U
+            List<Character> messwerten = data.getMesswerten(); // h m n m h m m h n m n m h n n m n m n h
 
             // Add transitions to the map
             for (int i = 0; i < messwerten.size() - 1; i++) {
@@ -28,6 +28,7 @@ public class MarkovClassifier {
             char lastMesswerten = messwerten.get(messwerten.size() - 1);
             transitionProbabilities.computeIfAbsent(lastMesswerten, k -> new ArrayList<>()).add(phase);
         }
+
     }
 
     public char predict(List<Character> messwerten) {

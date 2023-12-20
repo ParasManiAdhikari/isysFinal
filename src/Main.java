@@ -7,18 +7,20 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         String fileName = "";
-        classifier(fileName);
-    }
-
-    private static void classifier(String fileName) {
-        List<MessageData> trainData;
         try {
-            trainData = readFromFile("src/data/train.txt");
+            classifier(fileName);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static void classifier(String fileName) throws IOException {
+        List<MessageData> trainData = readFromFile("src/data/train.txt");
         MarkovClassifier classifier = new MarkovClassifier();
         classifier.train(trainData);
+        List<MessageData> evalData = readFromFile("src/data/eval.txt");
+        char phase = classifier.predict(evalData.get(0).getMesswerten());
+        System.out.println(phase);
     }
 
     public static List<MessageData> readFromFile(String fileName) throws IOException {
