@@ -5,13 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String fileName = "";
-        try {
-            classifier(fileName);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        classifier(fileName);
     }
 
     private static void classifier(String fileName) throws IOException {
@@ -34,7 +30,6 @@ public class Main {
                 for (int i = 2; i < line.length(); i += 2) {
                     messwerten.add(line.charAt(i));
                 }
-
                 MessageData messageData = new MessageData(phase, messwerten);
                 messageList.add(messageData);
             }
