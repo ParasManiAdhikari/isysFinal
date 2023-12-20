@@ -17,7 +17,8 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        MarkovClassifier classifier = new MarkovClassifier();
+        classifier.train(trainData);
     }
 
     public static List<MessageData> readFromFile(String fileName) throws IOException {

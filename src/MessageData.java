@@ -1,8 +1,8 @@
 import java.util.List;
 
 public class MessageData {
-    private char phase;
-    private List<Character> messwerten;
+    private final char phase;
+    private final List<Character> messwerten;
 
     public MessageData(char phase, List<Character> messwerten) {
         this.phase = phase;
